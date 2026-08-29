@@ -21,6 +21,12 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/backend ./backend
 
+#---------for security user and group added---------
+
+RUN addgroup --system devgrp && adduser --system --ingroup devgrp devuser
+USER devuser
+
+#-----------devuser and devgrp are added----------
 
 EXPOSE 5000
 
